@@ -1,0 +1,30 @@
+/* CSS - Front-End das Views */
+
+.footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+}
+
+* {
+    font-family: 'Inconsolata', monospace;
+}
+
+.insertcontact {
+    width: 400px;
+    margin-left: 30%;
+    margin-top: 5%;
+}
+
+.msg {
+    background-color: darkgreen;
+    color: rgb(3, 212, 3);
+    width: 200px;
+    text-align: center;
+    margin-top: 3%;
+    margin-left: 40%;
+}
