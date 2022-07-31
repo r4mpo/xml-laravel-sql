@@ -46,7 +46,7 @@
     @if(!is_null($mercadoria->fk_categoria_3))
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1"><ion-icon name="extension-puzzle-outline"></ion-icon></span>
-            <select class="form-select" id="selectCategoria" name="fk_categoria_3" aria-label="Default select example">
+            <select class="form-select" id="selectCategoria3" name="fk_categoria_3" aria-label="Default select example">
                 <option value="{{ $mercadoria->fk_categoria_3 }}" selected>{{ $mercadoria->fk_categoria_3 }}</option>
                 {{--  --}}
             </select>
@@ -76,6 +76,8 @@
 <script src="/js/requisicoes.js"></script>
 <script>
     buscarCategorias('selectCategoria') // Buscando categorias
+    buscarCategorias('selectCategoria2') // Buscando categorias
+    buscarCategorias('selectCategoria3') // Buscando categorias
     disabledCb() // Desabilitando, caso necessário, o checkbox
 </script>
 @endsection
