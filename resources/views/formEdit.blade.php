@@ -27,6 +27,7 @@
             <option value="{{ $mercadoria->fk_categoria_1 }}" selected>{{ $mercadoria->fk_categoria_1 }}</option>
             {{--  --}}
         </select>
+        <button type="button" onclick="adicionarCampo()" class="btn btn-outline-dark">Adicionar</button>
     </div>
 
     {{-- Verifica se o campo está preenchido. Se estiver,
@@ -53,6 +54,10 @@
         </div>
     @endif
 
+    <div class="input-group mb-3" id="adicionarCategoriaCampo">
+        {{--  --}}
+    </div>
+
     <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1"><ion-icon name="podium-outline"></ion-icon></span>
         <select class="form-select" name="loteSelecionado" aria-label="Default select example" disabled>
@@ -75,9 +80,62 @@
 
 <script src="/js/requisicoes.js"></script>
 <script>
+
     buscarCategorias('selectCategoria') // Buscando categorias
     buscarCategorias('selectCategoria2') // Buscando categorias
     buscarCategorias('selectCategoria3') // Buscando categorias
     disabledCb() // Desabilitando, caso necessário, o checkbox
+
+    let i = 0 // Conta quantos campos foram adicionados
+    let y = 2 // Serve para diferenciar os campos
+
+
+    // Verificações para inclusão de novos campos em formEdit
+    const sCat2 = document.getElementById('selectCategoria2')
+    const sCat3 = document.getElementById('selectCategoria3')
+
+    if(sCat2){
+        i++
+        y++
+    }
+
+    if(sCat3){
+        i++
+        y++
+    }
+
+    function adicionarCampo(){
+        if(i < 2){
+            var adicionarCategoriaCampo = document.getElementById('adicionarCategoriaCampo')
+            let novaCategoria =
+            `<div class="input-group mb-3" id="adicionarCategoriaCampo${y}">
+                <span class="input-group-text" id="basic-addon1"><ion-icon name="extension-puzzle-outline"></ion-icon></span>
+                <select class="form-select" id="selectCategoria${y}" name="fk_categoria_${y}" aria-label="Default select example">
+                    
+                </select>
+                <button type="button" onclick="removerCampo('adicionarCategoriaCampo${y}', ${y})" class="btn btn-outline-dark">Remover</button>
+            </div>`
+            adicionarCategoriaCampo.innerHTML += novaCategoria
+
+            // Insere categorias nos 2 últimos campos
+            buscarCategorias("selectCategoria" + y)
+            buscarCategorias("selectCategoria" + (y - 1))
+            y++;
+            i++;
+        }else{
+            alert('Erro. Apenas 3 campos de categorias são permitidos')
+        }
+    }
+
+    function removerCampo(x, b){
+        if(i == (b - 1)){
+            CampoSelecionado = document.getElementById(x)
+            CampoSelecionado.remove()
+            i--;
+            y--;
+        }else{
+            alert('Erro. Não é possível excluir esse campo.')
+        }
+    }
 </script>
 @endsection
